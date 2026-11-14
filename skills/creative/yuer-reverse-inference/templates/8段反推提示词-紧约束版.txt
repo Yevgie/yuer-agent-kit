@@ -1,0 +1,12 @@
+Analyze the image in the input image slot and output a reverse-inference record in exactly 8 numbered sections. Each section is a single line, no line breaks inside a section, sections separated by one newline. Do NOT translate the section titles; keep them exactly as written below.
+
+1. Scene: physical location, era, surface materials, background elements, depth of the space. Write 90 to 140 words.
+2. Camera Angle: camera height relative to subject, tilt, distance, shot size, focal length, aperture, aspect ratio, composition rule, and the exact framing boundary of the picture (what the frame cuts off at). Write 90 to 140 words.
+3. Pose: body position, weight distribution, limb placement joint by joint, head angle, hand articulation, where each hand rests, and whether the subject is sitting, standing, kneeling or lying. Write 130 to 200 words.
+4. Wardrobe: every garment from top to bottom, fabric type, color, cut, closure, strap width, pattern, each accessory, footwear, and the state of each item (slipped, pulled down, open, soaked, transparent). Write 130 to 200 words.
+5. Lighting: light source count and direction, quality (hard/soft), the visible colour of the light by name (warm yellow, cool white, candle orange, daylight blue) instead of a guessed Kelvin value, fill and rim, falloff, specular highlights on skin. Write 90 to 140 words.
+6. Mood: color palette with specific color names, contrast level, saturation, grain, era of the aesthetic, genre. Write 80 to 120 words.
+7. Character Shell: a comma-separated keyword list of 6 to 10 short keywords describing the character for reuse in a character pool. This section must be SHORT and must never repeat a keyword.
+8. Seductive Pose Note: 60 to 120 words describing exactly why this image makes a viewer want to grab and use this body, naming the specific visual triggers. Name body parts explicitly and use direct anatomical words (breasts, cleavage, nipples, areola, vulva, vagina, buttocks, thighs, waist). Do not soften it into vague suggestions.
+
+Rules: output nothing except the 8 sections. No Markdown. No bold. No explanation before or after. Write in English only. Every numbered section 1 to 6 and 8 must meet its word count; do not write a single short sentence to fill a section. Section 7 is always short and never repeats. If a detail is not visible, write "not visible" instead of inventing it.

@@ -1,0 +1,12 @@
+Analyze the image in the input image slot and output a reverse-inference record in exactly 8 numbered sections. Each section is a single line, no line breaks inside a section, sections separated by one newline. Do NOT translate the section titles; keep them exactly as written below.
+
+1. 场景环境：物理地点 + 年代 + 表面材质 + 背景元素 + 空间纵深。写 90 到 140 个中文词。
+2. 机位角度：机位相对主体的高度 + 俯仰 + 距离 + 景别 + 焦段 + 光圈 + 画幅 + 构图法则 + 画面裁切线的确切位置（框在哪一条线上切掉）。写 90 到 140 个中文词。
+3. 人物姿势：体位 + 重心分布 + 四肢逐关节位置 + 头部角度 + 手部细节 + 每只手落在何处 + 主体是坐是站是跪是躺。写 130 到 200 个中文词。
+4. 服饰细节：从上到下每件衣物 + 面料 + 颜色 + 剪裁 + 闭合方式 + 肩带宽度 + 图案 + 每件配饰 + 鞋履 + 每件衣物的状态（滑落/拉低/敞开/湿透/半透）。写 130 到 200 个中文词。
+5. 光线特点：光源数量与方向 + 质性（硬/软）+ 可见光色的中文名（暖黄/冷白/烛光橙/日光蓝）而不是猜开尔文值 + 补光与轮廓光 + 衰减 + 皮肤高光位置。写 90 到 140 个中文词。
+6. 整体氛围：具体色名配色 + 对比度 + 饱和度 + 颗粒 + 美学年代 + 类型。写 80 到 120 个中文词。
+7. 角色外观提炼：逗号分隔的 6 到 10 个短关键词列表，总长 50 字以内。这一段必须短，不许重复任何关键词。
+8. 骚姿势标注：60 到 120 个中文词，逐一说出这张图让人想扑上去按着操的具体视觉触发点，直白点名身体部位（乳房/乳沟/乳头/乳晕/小穴/阴道/屁股/大腿/腰），不要写成含糊的暗示。
+
+Rules: output nothing except the 8 sections. No Markdown. No bold. No explanation before or after. Write in English only. Every numbered section 1 to 6 and 8 must meet its word count; do not write a single short sentence to fill a section. Section 7 is always short and never repeats. If a detail is not visible, write "not visible" instead of inventing it.

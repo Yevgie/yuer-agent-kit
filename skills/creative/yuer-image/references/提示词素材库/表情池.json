@@ -1,0 +1,108 @@
+[
+ {
+  "name": "Amused, {Laughing|giggling|happy, open mouth}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Positive"
+  ]
+ },
+ {
+  "name": "Excited, {Open mouth|Gasping|Wide eyes|Huge smile}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Positive"
+  ]
+ },
+ {
+  "name": "Happy, {Smile|Big smile|Huge smile|Upturned eyes}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Positive"
+  ]
+ },
+ {
+  "name": "Calm, {Easygoing expression|Slight smile|Distant expression}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Positive"
+  ]
+ },
+ {
+  "name": "Ahegao, open mouth, saliva, tongue",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Positive",
+   "NSFW"
+  ]
+ },
+ {
+  "name": "torogao, blush, open mouth, {2-3$$drool, (saliva:0.8) | (tears:0.8) | heavy breathing | exhausted | light smile | {half-closed eyes | closed eyes}}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Positive",
+   "NSFW"
+  ]
+ },
+ {
+  "name": "Bored, {Narrowed eyes|Half-closed eyes|Blank stare|Ringed eyes|Expressionless|Tired eyes}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Neutral"
+  ]
+ },
+ {
+  "name": "Embarrassed, {Blush|Full blush|Tears|Full-face blush, constricted pupils, ear blush}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Neutral"
+  ]
+ },
+ {
+  "name": "Anxious, {Nervous expression|Averting eyes|Trembling|Shaking|Crying with eyes open}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Neutral"
+  ]
+ },
+ {
+  "name": "Disgust, {Loathing|Narrowed eyes|Sneer}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Negative"
+  ]
+ },
+ {
+  "name": "Sad, {Slight tears|Tears|Sobbing|Sobbing, tears streaming}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Negative"
+  ]
+ },
+ {
+  "name": "Afraid, {Terrified|Constricted pupils|Trembling, shaking}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Negative"
+  ]
+ },
+ {
+  "name": "Angry, {Wide-open eyes|Narrowed Eyes|Open mouth, screaming, blush, wide open eyes}",
+  "tags": [
+   "Meta",
+   "Emotions",
+   "Negative"
+  ]
+ }
+]

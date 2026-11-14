@@ -1,0 +1,260 @@
+{
+  "599": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": [
+        "851",
+        0
+      ],
+      "steps": 8,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "start_at_step": 0,
+      "end_at_step": 8,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "874",
+        0
+      ],
+      "positive": [
+        "627",
+        0
+      ],
+      "negative": [
+        "763",
+        0
+      ],
+      "latent_image": [
+        "698",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "K采样器（高级）",
+      "cnr_id": "comfy-core",
+      "ver": "0.12.3"
+    }
+  },
+  "627": {
+    "inputs": {
+      "text": "A head-and-shoulders portrait of a woman, nose points 20 degrees toward viewer left, subtle chin tuck. Her eyes are partly open with a focused gaze, with a relaxed mouth. Her hair is styled as long straight dark hair worn loose with straight bangs. She is wearing ivory knit top. The scene shows light beige wall, soft studio light.\n",
+      "clip": [
+        "755",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "698": {
+    "inputs": {
+      "width": [
+        "857",
+        0
+      ],
+      "height": [
+        "857",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image (Base Dimensions) 初始大小",
+      "cnr_id": "comfy-core",
+      "ver": "0.12.3"
+    }
+  },
+  "732": {
+    "inputs": {
+      "filename_prefix": "主机出图/krea2文生图/Krea22026-11-09",
+      "images": [
+        "829",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.64"
+    }
+  },
+  "755": {
+    "inputs": {
+      "clip_name": "Qwen\\qwen3vl-4b-abliterated_fp8_e4m3fn.safetensors",
+      "type": "krea2",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "加载CLIP",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "757": {
+    "inputs": {
+      "vae_name": "Qwen\\qwen_image_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "761": {
+    "inputs": {
+      "unet_name": "moodyKrea2Mix_v70_nvfp4.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "763": {
+    "inputs": {
+      "conditioning": [
+        "627",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化",
+      "cnr_id": "comfy-core",
+      "ver": "0.31.0"
+    }
+  },
+  "829": {
+    "inputs": {
+      "samples": [
+        "599",
+        0
+      ],
+      "vae": [
+        "757",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码",
+      "cnr_id": "comfy-core",
+      "ver": "0.12.3"
+    }
+  },
+  "851": {
+    "inputs": {
+      "seed": 916801396374854
+    },
+    "class_type": "SeedNode",
+    "_meta": {
+      "title": "种子",
+      "cnr_id": "comfy-core",
+      "ver": "0.31.0"
+    }
+  },
+  "857": {
+    "inputs": {
+      "aspect_ratio": "9:16 (Portrait Widescreen)",
+      "megapixels": 1,
+      "multiple": 32
+    },
+    "class_type": "ResolutionSelector",
+    "_meta": {
+      "title": "分辨率选择器",
+      "cnr_id": "comfy-core",
+      "ver": "0.31.0"
+    }
+  },
+  "874": {
+    "inputs": {
+      "sage_attention": "sageattn3_per_block_mean",
+      "allow_compile": false,
+      "model": [
+        "896",
+        0
+      ]
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "Patch Sage Attention KJ",
+      "cnr_id": "comfyui-kjnodes",
+      "ver": "1.5.0"
+    }
+  },
+  "896": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "lora_1": {
+        "on": true,
+        "lora": "私有\\zxct_fizgig\\zxct2.4_fizgig_krea2-000030.safetensors",
+        "strength": 1.0
+      },
+      "lora_2": {
+        "on": true,
+        "lora": "Krea2\\krea2-Cc风情万种-风格.safetensors",
+        "strength": 0.6
+      },
+      "lora_3": {
+        "on": true,
+        "lora": "Krea2\\krea2-Cc-MJ-影视柔光.safetensors",
+        "strength": 0.8
+      },
+      "lora_4": {
+        "on": true,
+        "lora": "私有\\m99_labiaplasty_pussy_8b_krea2.safetensors",
+        "strength": 0.8
+      },
+      "lora_5": {
+        "on": true,
+        "lora": "私有\\genital_color_krea2_loraholic.safetensors",
+        "strength": -6
+      },
+      "lora_6": {
+        "on": true,
+        "lora": "私有\\breast_size_v2_krea2_loraholic.safetensors",
+        "strength": 2
+      },
+      "lora_7": {
+        "on": true,
+        "lora": "私有\\Krea2-滑块-湿度wetness_krea2_loraholic.safetensors",
+        "strength": -1
+      },
+      "lora_8": {
+        "on": true,
+        "lora": "私有\\PornMaster_Krea2_Realism_slider_V1.safetensors",
+        "strength": 3
+      },
+      "lora_9": {
+        "on": true,
+        "lora": "私有\\K2_Waterglowskin_slider_xiaowuhen.safetensors",
+        "strength": -1
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "761",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree)",
+      "cnr_id": "rgthree-comfy",
+      "ver": "1.0.2608272350"
+    }
+  }
+}

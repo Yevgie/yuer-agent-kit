@@ -1,0 +1,273 @@
+{
+  "599": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": [
+        "851",
+        0
+      ],
+      "steps": 8,
+      "cfg": 3.5,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "start_at_step": 0,
+      "end_at_step": 8,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "882",
+        0
+      ],
+      "positive": [
+        "627",
+        0
+      ],
+      "negative": [
+        "864",
+        0
+      ],
+      "latent_image": [
+        "698",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "K采样器（高级）",
+      "cnr_id": "comfy-core",
+      "ver": "0.12.3"
+    }
+  },
+  "627": {
+    "inputs": {
+      "text": "一位年轻女性跪坐在床上，身体前倾并侧向镜头。她留着黑色的长直发，身穿一件灰色的露肩露背长袖针织毛衣，下身赤裸，脚上穿着半透明的肉色丝袜。她的右手正轻轻抚摸着自己的臀部左侧，头部微微低下看向下方。背景是米黄色的垂直褶皱窗帘，前景则是黑白几何条纹的床单或毯子。光线柔和且均匀地照亮了场景，呈现出一种近距离拍摄的私密氛围。",
+      "clip": [
+        "755",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "698": {
+    "inputs": {
+      "width": [
+        "857",
+        0
+      ],
+      "height": [
+        "857",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image (Base Dimensions) 初始大小",
+      "cnr_id": "comfy-core",
+      "ver": "0.12.3"
+    }
+  },
+  "732": {
+    "inputs": {
+      "filename_prefix": "主机出图/moss文生图/moss2026-11-11",
+      "images": [
+        "829",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.64"
+    }
+  },
+  "755": {
+    "inputs": {
+      "clip_name": "Qwen\\qwen3.5_9b_int8_convrot.safetensors",
+      "type": "moss_image",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "加载CLIP",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "757": {
+    "inputs": {
+      "vae_name": "Flux\\flux2-vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "761": {
+    "inputs": {
+      "unet_name": "PornMaster_Moss_MIX_V2_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "829": {
+    "inputs": {
+      "samples": [
+        "599",
+        0
+      ],
+      "vae": [
+        "757",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码",
+      "cnr_id": "comfy-core",
+      "ver": "0.12.3"
+    }
+  },
+  "851": {
+    "inputs": {
+      "seed": 686103331499152
+    },
+    "class_type": "SeedNode",
+    "_meta": {
+      "title": "种子",
+      "cnr_id": "comfy-core",
+      "ver": "0.38.0"
+    }
+  },
+  "857": {
+    "inputs": {
+      "aspect_ratio": "9:16 (Portrait Widescreen)",
+      "megapixels": 1,
+      "multiple": 8
+    },
+    "class_type": "ResolutionSelector",
+    "_meta": {
+      "title": "分辨率选择器",
+      "cnr_id": "comfy-core",
+      "ver": "0.38.0"
+    }
+  },
+  "864": {
+    "inputs": {
+      "text": "短腿, 粗腿, 粗大腿, 粗小腿, 短粗腿,  肥胖, 发胖, 臃肿, 肥壮, 大肚子, 水桶腰, 粗腰, 没有腰, 无腰线, 宽胯, 臀部下垂, 扁平的臀, 肥臀, 松垮的臀, 臀部松软, 肌肉发达, 壮硕, 骨架宽, 身材矮胖, 矮个子, 短粗身材, 畸形, 身体畸形, 多余肢体, 三只手, 三只手臂, 三条腿, 三只脚, 四只手, 第四条腿, 第四只脚, 多余手指, 六根手指, 手指数量错误, 多趾, 少趾, 断手, 断脚, 残肢, 手融合, 手指融合, 连指, 爪形手, 拇指朝错边, 两个拇指, 手臂穿过身体, 从背后长出的手臂, 无肩手臂, 缺肘, 悬浮的手, 腿交叉, 双腿分不开, 膝盖反折, 反关节, 膝盖方向错误, 脚踝错位, 腿融合, 无脖子, 脖子陷入肩膀, 躯干扭转, 两个头, 牙齿错乱, 身体比例异常, 四肢不成比例, 肢体数量错误, 黑皮肤, 深肤色, 晒黑, 油皮, 油腻皮肤, 满脸油光, 塑料皮肤, 过度磨皮, 整容脸, 黑色乳头, 黑色乳晕, 黑色阴唇, 黑色小穴, 深色外阴, 生殖部位发黑",
+      "clip": [
+        "755",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt) Negative",
+      "cnr_id": "comfy-core",
+      "ver": "0.3.73"
+    }
+  },
+  "874": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "lora_1": {
+        "on": true,
+        "lora": "MOSS\\moss_image_sft_4_steps_lora_v2_600_avg_rank_72_bf16.safetensors",
+        "strength": 1
+      },
+      "lora_2": {
+        "on": true,
+        "lora": "MOSS\\zxct\\zxct2.0_figziz_moss-000060.safetensors",
+        "strength": 1
+      },
+      "lora_3": {
+        "on": true,
+        "lora": "MOSS\\lenovo_moss.safetensors",
+        "strength": 0.8
+      },
+      "lora_4": {
+        "on": true,
+        "lora": "MOSS\\nicegirls_v2_moss.safetensors",
+        "strength": 0.4
+      },
+      "lora_5": {
+        "on": true,
+        "lora": "MOSS\\马甲线小蛮腰_linea-alba-moss-moss-image-base-epoch-10.safetensors",
+        "strength": 0.6
+      },
+      "lora_6": {
+        "on": true,
+        "lora": "MOSS\\奶子滑块_breast_size_slider-moss-v1.safetensors",
+        "strength": 4
+      },
+      "lora_7": {
+        "on": true,
+        "lora": "MOSS\\细节滑块_PornMaster_Moss_Detail_Slider_V1.safetensors",
+        "strength": 1.8
+      },
+      "lora_8": {
+        "on": true,
+        "lora": "MOSS\\美穴_moss_pussy_lora_v3.0.safetensors",
+        "strength": 1
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "761",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree)",
+      "cnr_id": "rgthree-comfy",
+      "ver": "1.0.2608272350"
+    }
+  },
+  "881": {
+    "inputs": {
+      "double_layers": "",
+      "single_layers": "22",
+      "start_percent": 0,
+      "end_percent": 0.5,
+      "model": [
+        "874",
+        0
+      ]
+    },
+    "class_type": "SkipLayerGuidanceDiTSimple",
+    "_meta": {
+      "title": "跳过层引导（DiT简化）",
+      "cnr_id": "comfy-core",
+      "ver": "0.41.0"
+    }
+  },
+  "882": {
+    "inputs": {
+      "attention": "comfy kitchen attention",
+      "model": [
+        "881",
+        0
+      ]
+    },
+    "class_type": "ModelAttentionBackend",
+    "_meta": {
+      "title": "模型注意力后端",
+      "cnr_id": "comfy-core",
+      "ver": "0.44.0"
+    }
+  }
+}

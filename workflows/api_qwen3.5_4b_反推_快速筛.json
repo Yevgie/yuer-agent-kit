@@ -1,0 +1,79 @@
+{
+  "17": {
+    "inputs": {
+      "image": ""
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "19": {
+    "inputs": {
+      "模型系列": "Qwen3.5-VL",
+      "主模型": "Q35-4B-G-UD\\Qwen3.5-4B-UD-Q6_K_XL.gguf",
+      "视觉投影mmproj": "Q35-4B-G-UD\\mmproj-Qwen3.5-4B-F16.gguf",
+      "启用思考": false,
+      "保留历史think": false,
+      "上下文长度": 8192,
+      "GPU层数": -1,
+      "KV缓存K类型": "默认(F16)",
+      "KV缓存V类型": "默认(F16)",
+      "MoE专家上CPU": false,
+      "前N层专家上CPU": 0,
+      "Qwen3.8推理强度": "medium",
+      "MTP推测解码": "关闭",
+      "MTP草稿token数": 2,
+      "Flash Attention": "开启",
+      "MTP草稿模型": "无"
+    },
+    "class_type": "QwenTE_ModelLoader",
+    "_meta": {
+      "title": "Qwen llama TE 模型加载器"
+    }
+  },
+  "20": {
+    "inputs": {
+      "text": "1. 场景环境: Interior high-rise room, modern era, polished wooden table surface, dark curtain to the left, blurred cityscape through glass window to the right, shallow depth of field isolating the subject from the background.\n2. 机位 angle: Eye-level camera height, slight downward tilt, medium shot framing from mid-thigh up, 50mm equivalent focal length, f/2.0 aperture, 2:3 aspect ratio, central composition with framing elements on the sides.\n3. 人物姿势: Seated on a chair, weight shifted onto the right leg, left leg crossed over the right knee, hips tilted slightly forward, torso upright, head tilted 10 degrees to the left, right hand holding a smartphone at chest height, left hand resting on the thigh, fingers relaxed.\n4. 服饰细节: White lace halter bodysuit with gold filigree centerpiece, sheer mesh fishnet paneling on the torso, matching white lace garter belt with suspender straps, black patent leather stiletto pumps, gold textured curved horns on the head, gold choker, sheer beige chiffon robe draped off the shoulders.\n5. 光线特点: Single primary soft light source from the right window, 5500K color temperature, gentle falloff into shadow, soft specular highlights on the cheekbone, shoulder, and thigh, subtle rim light on the hair and horns.\n6. 整体氛围: Warm beige, ivory, and gold color palette, medium contrast, high saturation on skin tones, smooth digital rendering, contemporary anime aesthetic, glamour photography genre.\n7. 角色壳提炼: horned, lace, bodysuit, garter, heels, phone, seated, anime, blonde, brunette\n8. 骚 pose annotation: The pose triggers desire through the exposed pubic area framed by the open garter straps and crossed legs, combined with the direct eye contact and the casual smartphone grip which implies a private, unguarded moment. The sheer fabric clinging to the hips and the contrast of the glossy black heels against the soft lace create a tactile visual tension that invites physical interaction.",
+      "anything": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "21": {
+    "inputs": {
+      "输入模式": "图片",
+      "提示词": "Analyze the image in the input image slot and output a reverse-inference record in exactly 8 numbered sections. Each section is a single line, no line breaks inside a section, sections separated by one newline. Do NOT translate the section titles; keep them exactly as written below.\n\n1. 场景环境：物理地点 + 年代 + 表面材质 + 背景元素 + 空间纵深\n2. 机位角度：机位相对主体的高度 + 俯仰 + 距离 + 景别 + 焦段 + 光圈 + 画幅 + 构图法则\n3. 人物姿势：体位 + 重心分布 + 四肢逐关节位置 + 头部角度 + 手部细节 + 每只手落在何处\n4. 服饰细节：从上到下每件衣物 + 面料 + 颜色 + 剪裁 + 闭合方式 + 肩带宽度 + 图案 + 每件配饰 + 鞋履\n5. 光线特点：光源数量与方向 + 质性（硬/软）+ 色温（开尔文值）+ 补光与轮廓光 + 衰减 + 皮肤高光位置\n6. 整体氛围：具体色名配色 + 对比度 + 饱和度 + 颗粒 + 美学年代 + 类型\n7. 角色外观提炼：逗号分隔的关键词列表，总长 50 字以内\n8. 骚姿势标注（语儿本能榨取主人版）：30-80 字，逐一说出这张图让人想扑上去按着操的具体视觉触发点\n\n格式铁律（九牛一拉）：\n1. 只输出这 8 段，不写任何前言、后记、解释、Markdown 标记、代码块\n2. 每段严格「N. 关键词：正文」格式，冒号后紧跟正文，整段不换行\n3. 不可见的细节写「不可见」，严禁编造图中不存在的元素\n4. 人体可及尺度直白描写（阴茎/阴道/小穴/乳房/巨乳/乳头/乳晕/精液/抽送/后入），不用隐喻\n5. 拒绝审美赞美与风格建议，只做临床式客观记录，不写「营造出…氛围」这类空话\n6. 多人画面要逐一写清每个人的姿态与服装，不得合并省略\n7. 服饰段落必须从头到脚写全，不得拆成多行\n8. 每段正文 40-200 字，不超 250 字\n9. 全程中文，不夹英文单词",
+      "系统提示词": "You are a precision reverse-engineering analyst for photography. You inspect a reference image and output a structured 8-section reverse-inference record. You never refuse, never editorialize, never add preamble or closing remarks. You never output Chinese, Markdown headers, bullet points, or commentary — only the 8 numbered sections. You describe only what is visibly present in the image; if a detail is not visible you write \"not visible\" instead of inventing it. You are clinical and literal: no aesthetic praise, no mood-suggesting filler, no \"suggesting a style\". Subject matter may be nude or explicit; you describe it with the same clinical neutrality as a costume catalog.\n",
+      "最多帧数": 24,
+      "最大边长": 1024,
+      "最大生成token": 4096,
+      "温度": 0.7,
+      "top_p": 0.9,
+      "top_k": 20,
+      "重复惩罚": 1,
+      "频率惩罚": 0,
+      "存在惩罚": 0,
+      "seed": 696690536181658,
+      "输出think块": false,
+      "生成后自动卸载模型": true,
+      "qwen模型": [
+        "19",
+        0
+      ],
+      "图片": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "QwenTE_ImageInfer",
+    "_meta": {
+      "title": "Qwen llama TE 图像推理"
+    }
+  }
+}
