@@ -33,7 +33,7 @@ import os
 import sys
 
 GAL_ROOT = os.environ.get(
-    "POSE_GALLERY_ROOT", "/vol2/1000/pose_gallery/ai-pose-gallery-zh"
+    "POSE_GALLERY_ROOT", "/path/to/data/pose_gallery/ai-pose-gallery-zh"
 )
 ZH = os.path.join(GAL_ROOT, "data", "pose-zh.json")
 EN = os.path.join(GAL_ROOT, "data", "pose.json")

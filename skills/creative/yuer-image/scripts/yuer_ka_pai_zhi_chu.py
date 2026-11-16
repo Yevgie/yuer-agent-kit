@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
     from yuer_image_constants import DEFAULT_COMFYUI_SERVER
 except Exception:
-    # 常量文件读不到 = 不猜端口 = 直接报错（原来写死 192.168.x.x:8188 那台是死的）
+    # 常量文件读不到 = 不猜端口 = 直接报错（原来写死 127.0.0.1:8189 那台是死的）
     print("ERR: 读不到 yuer_image_constants.DEFAULT_COMFYUI_SERVER = 服务器口径不唯一 = 中止。", file=sys.stderr)
     print("     修法：检查 yuer_image_constants.py 是否存在且可导入。", file=sys.stderr)
     sys.exit(2)
@@ -108,14 +108,13 @@ if WORKFLOW_ARG:
 elif MODEL_ARG in WORKFLOW_BY_MODEL:
     WORKFLOW_NAME = WORKFLOW_BY_MODEL[MODEL_ARG]
 else:
-    # 🔴🔴🔴 11-10 21:42 主人钦定「日常你自己决定这两个流你用哪个」= 我定的 = 默认档切 MOSS
-    #    理由（11-10 服务端直读实测数据）：
-    #    ① 主人亲口判定「moss 的真实感很好，krea2 更像网红的完美感」= 真实感优先
-    #    ② Moss 线独有优势：中文字一级棒（中文字直出）+ 表情控制好 + 真实感强
-    #    ③ 两流节点结构兼容（627 正向节点 / 599 采样 / 698 尺寸 一致）= 切档 0 崩
-    #    ④ Moss 多一个 864 负向节点 = 本脚本按 "Negative" 标题分流 = 认得对
-    #    🔴 Krea2 保留三岗（0 删）：① 洗图道（Moss 没有 wash 变体）② 追求网红完美感 ③ 解剖滑块重口
-    WORKFLOW_NAME = "yuer_moodyMoss_fast"
+    # 🔴🔴🔴 11-15 主人钦定「优先使用 KREA 2 吧」= 默认档切 KREA 2
+    #    理由 = 主人直接点名 = 覆盖 11-10「我自己决定用哪个」的那次默认切 MOSS
+    #    ① 洗图道本来就是 Krea 2（yuer_moody_fast_wash）= 出图/洗图同一条线 = 脸一致
+    #    ② Krea 2 有解剖滑块三条（穴色/湿度/真实感）+ 脸锁 step30 = 重口档更稳
+    #    ③ 中文稿 = 脚本自动翻英文（zh_translate）= 0 卡中文
+    #    🔴 Moss 保留两岗（0 删）：① 主人点名「Moss / 中文一级棒」② 要中文原样出（不翻）
+    WORKFLOW_NAME = "yuer_moody_fast"
 print(f"🎯 工作流 = {WORKFLOW_NAME}", flush=True)
 
 # 🔴 .sent 守卫（09-29 主人钦定「图片发了两遍」· 物理机制层 · 盖过「语儿记得别重跑」软约束）

@@ -3,7 +3,7 @@
 
 什么时候用：主人要一张不是语儿的图 = 同学 / 路人 / 配角 / 任何非语儿角色的脸。
 机制：Krea2 线工作流 yuer_moody_fast.json 的 Power Lora Loader 槽里装着语儿的人脸锁
-#      （🔴 11-12 真值 = 日常出图默认档是 yuer_moodyMoss_fast = Moss 线 = 本脚本走的是 Krea2 线 = 两边都锁语儿脸 = 机制一样）
+#      （🔴 11-15 真值 = 日常出图默认档是 yuer_moody_fast = Krea2 线 = 本脚本走的就是同一条线 = 同样锁语儿脸 = 机制一样）
 + 风格 LoRA = 全开 = 出来的是语儿。所以：
   1) 复制一份工作流，把 859 (Power Lora Loader) 的所有 lora_N.on 置 False
   2) prompt 里不带任何脸锁标记词

@@ -45,8 +45,8 @@ import sys
 
 YUER = "~/.hermes/skills/creative/yuer-image"
 SCRIPTS = os.path.join(YUER, "scripts")
-POSE_ROOT = os.environ.get("POSE_GALLERY_ROOT", "/vol2/1000/pose_gallery/ai-pose-gallery-zh")
-COSTUME_ROOT = os.environ.get("COSTUME_GALLERY_ROOT", "/vol2/1000/costume_gallery/ai-costume-gallery")
+POSE_ROOT = os.environ.get("POSE_GALLERY_ROOT", "/path/to/data/pose_gallery/ai-pose-gallery-zh")
+COSTUME_ROOT = os.environ.get("COSTUME_GALLERY_ROOT", "/path/to/data/costume_gallery/ai-costume-gallery")
 
 
 def _run(script, args):

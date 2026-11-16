@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""抽卡批量 = 0 门禁 + 连抽去重，一条命令出 N 份 prompt
+"""抽卡批量 = 0 门禁 + 完全随机，一条命令出 N 份 prompt
 
 用法
 ----
     /usr/bin/python3 ~/.hermes/skills/creative/yuer-character-roster/scripts/ka_batch_pick.py 5
     /usr/bin/python3 ~/.hermes/skills/creative/yuer-character-roster/scripts/ka_batch_pick.py 5 \
-        --pool sfw --manifest /tmp/ka_batch.tsv --exclude 136,88
+        --pool sfw --manifest /tmp/ka_batch.tsv
 
 stdout（每张一张卡，格式与 pick_ka_prompt.py 一致 = 下游 grep 仍同源）
 ----
@@ -38,9 +38,13 @@ stdout（每张一张卡，格式与 pick_ka_prompt.py 一致 = 下游 grep 仍�
 ② 中文牌 = 出图脚本内建中文自动翻译（zh_translate.py）= 中文牌也能走 Krea2。
 ③ 长度 0 阻断（11-07 起）= 长度从来就不拦。
 
-**🔴 保留的唯一一条 = 连抽去重 key = (角色外观, 姿势, 机位, 场景)**：
-那不是门禁 = 是防「同一副骨架复现上一次构图」= 主人连发抽卡是奔着「每张不一样」。
-撞 key = 换一个牌继续抽 = 不是踢掉废牌。
+**🔴🔴 11-15 主人钦定 = 抽卡完全随机 = 防重复机制全删**：
+原口径 = 连抽去重 key（角色外观 / 姿势 / 机位 / 场景 四项不撞）+ `--exclude`
+排掉上一批记录号 = **全删** = 主人原话「抽卡不需要防止重复，完全随机就行。
+哪怕偶尔的重复也不需要你管」。
+= 现在 = 全池进候选 = `random.sample` 抽 N 条 = **0 key 过滤 0 排除号**
+= 同一批里不抽到同一张记录号（只是因为 sample 不放回 = 不写第二遍同一个文件）
+= 跨批次抽到重复 = **0 管 = 主人说了算**。
 
 **🔴 机械去噪保留**（脏 token / 双逗号 / 空括号）= 0 语义加工 = 只剥非英文残渣。
 """
@@ -79,62 +83,37 @@ def denoise(text: str) -> str:
     return text.replace(" ,", ",").strip()
 
 
-def key_of(d: dict) -> tuple:
-    """连抽去重 key = (角色外观, 姿势, 机位, 场景) = 四项全不撞才算新牌"""
-    return (
-        (d.get("角色外观") or d.get("服饰") or "")[:120].lower(),
-        (d.get("姿势") or "")[:120].lower(),
-        (d.get("机位角度") or "")[:120].lower(),
-        (d.get("场景") or "")[:120].lower(),
-    )
-
-
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("count", type=int, nargs="?", default=5)
     ap.add_argument("--pool", default="nsfw", help="nsfw / sfw / all")
     ap.add_argument("--manifest", help="写 REC<TAB>PROMPT 每行一张 = 批量出图循环输入")
-    ap.add_argument("--exclude", default="", help="逗号分隔的记录号 = 不抽这些")
     ap.add_argument("--seed", type=int, default=None)
     args = ap.parse_args()
 
     prr = load_pick_module()
     valid = prr.load_valid(verbose=False, pool=args.pool)
-    excluded = {x.strip() for x in args.exclude.split(",") if x.strip()}
 
     # 🔴🔴 11-10 主人钦定 = 抽卡 0 门禁 = 全池直接进候选 = 0 预筛
-    pool, excluded_n = [], 0
+    pool = []
     for num, d in valid:
         fp = (d.get("成品") or "").strip()
-        if num in excluded:
-            excluded_n += 1
-            continue
-        pool.append((num, d, fp))
+        if fp:
+            pool.append((num, d, fp))
 
-    print(f"库内合格 {len(valid)} 条｜候选 {len(pool)} 条（0 预筛 = 抽到啥出啥）"
-          f"｜排除 {excluded_n} 条", file=sys.stderr)
+    print(f"库内合格 {len(valid)} 条｜候选 {len(pool)} 条（0 预筛 0 排除 = 抽到啥出啥）",
+          file=sys.stderr)
 
     if args.seed is not None:
         random.seed(args.seed)
 
-    picked, used_keys = [], []
-    attempts, max_attempts = 0, args.count * 20 + 60
-    while len(picked) < args.count and attempts < max_attempts:
-        attempts += 1
-        if not pool:
-            break
-        num, d, fp = random.choice(pool)
-        key = key_of(d)
-        if key in used_keys:
-            pool = [c for c in pool if key_of(c[1]) != key]
-            continue
+    # 🔴🔴 11-15 = 完全随机 = 0 去重 key = 0 排除号 = random.sample 不放回
+    picked = []
+    for num, d, fp in random.sample(pool, min(args.count, len(pool))):
         p = denoise(fp)
         dest = f"/tmp/ka_{num}_prompt.txt"
         with open(dest, "w", encoding="utf-8") as f:
             f.write(p)
-        # 🔴 0 主体门禁 = 不判不看 = 落盘即用（11-10 主人钦定）
-        used_keys.append(key)
-        pool = [c for c in pool if c[0] != num and key_of(c[1]) != key]
         picked.append((num, d, dest, len(p)))
 
     if args.manifest:
@@ -151,7 +130,7 @@ def main() -> int:
             print(f"[{k}] {d.get(k, '')}")
         print()
 
-    print(f"✅ 抽出 {len(picked)} 张（0 门禁 = 抽到啥出啥）", file=sys.stderr)
+    print(f"✅ 抽出 {len(picked)} 张（0 门禁 = 抽到啥出啥 = 完全随机）", file=sys.stderr)
     return 0 if picked else 1
 
 

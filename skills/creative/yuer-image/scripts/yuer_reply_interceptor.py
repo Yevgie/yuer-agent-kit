@@ -35,7 +35,7 @@ FORBIDDEN_PATTERNS = [
     "[图片]",
     # 路径/文件类
     "MEDIA:",
-    "/vol2/1000/Hermes",
+    "/path/to/data",
     "/vol2/",
     "/2026-出图留底",
     "OK_FILE:",
@@ -48,7 +48,7 @@ FORBIDDEN_PATTERNS = [
     "192.168.",
     "10.0.",
     "172.16.",
-    "192.168.x.x",
+    "127.0.0.1",
     "localhost:",
     ":8188",      # ComfyUI 默认端口
     ":3000",      # common dev ports
@@ -242,8 +242,8 @@ def auto_fix(reply_text: str) -> str:
     # 删了 yuer_send_v2.sh 之后可能留 yuer_send_ 看着也脏
     for path_residue in [
         r'/vol2/\d+/Secret/[\w一-鿿]+/[\w一-鿿_]+\.(?:png|jpg|jpeg|webp)',  # /path/to/media/xxx.png
-        r'/vol2/\d+/Hermes/[\w一-鿿/_-]+',  # /vol2/1000/Hermes/...
-        r'/vol2/\d+/[\w一-鿿/_-]+',  # /vol2/1000/...
+        r'/vol2/\d+/Hermes/[\w一-鿿/_-]+',  # /path/to/data/...
+        r'/vol2/\d+/[\w一-鿿/_-]+',  # /path/to/data/...
         r'yuer_send_v2?\.?sh?',  # yuer_send_v2.sh / yuer_send.sh / yuer_send_v2
         r'yuer_send[\w_]*',  # yuer_send_xxx
         r'yuer_run_\d+_?[\w一-鿿_]*',  # yuer_run_20260730_xxx
@@ -256,11 +256,11 @@ def auto_fix(reply_text: str) -> str:
     # 🔴 实战 248f 残留扫描：删黑名单后可能留下 IP 碎片、端口残留
     # 比如删了 "192.168." 后还剩 "31.4"，删了 ":8188" 后可能还剩别的端口碎片
     # 实战 248f v6 整改（盖过 v5）：精确 catch 已知 IPv4 后两段碎片
-    # 黑名单前 2 段已删（如 192.168. / 172.16. / 10.0. / 192.168.x.x）
+    # 黑名单前 2 段已删（如 192.168. / 172.16. / 10.0. / 127.0.0.1）
     # 剩下的 IPv4 后两段碎片 = "31.4" / "5.4" / "0.1" / "0.1" 这种
     # 用固定列表精确匹配，避免误伤日期/价格（7.27/100.5）
     for ip_tail in ('31.4', '5.4', '0.1', '1.1', '2.2', '3.3', '4.4', '6.6', '7.7', '8.8',
-                    '192.168.x.x', '192.168.x.x', '9.9', '10.10', '16.16', '20.20', '30.30'):
+                    '8.8.4.4', '1.1.1.1', '9.9', '10.10', '16.16', '20.20', '30.30'):
         fixed = re.sub(rf'\b{ip_tail}\b', '', fixed)
     fixed = re.sub(r':\d{2,5}\b', '', fixed)  # 端口残留（如 :8188 删了留空也清掉）
     # 实战 248f v5 整改（盖过 v4）：catch 删已知端口（避免误伤年份）

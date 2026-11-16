@@ -42,7 +42,7 @@ import os
 import sys
 
 GAL_ROOT = os.environ.get(
-    "POSE_GALLERY_ROOT", "/vol2/1000/pose_gallery/ai-pose-gallery-zh"
+    "POSE_GALLERY_ROOT", "/path/to/data/pose_gallery/ai-pose-gallery-zh"
 )
 DATA = os.path.join(GAL_ROOT, "data")
 

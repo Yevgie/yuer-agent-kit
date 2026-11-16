@@ -257,12 +257,8 @@ LIGHT_POOL = [
 
 # 身体段变体池（防637张共用同一段身体描述）
 BODY_VARIANTS = [
-    # v0 = 现有 CURRENT 覆盖段（由 build 脚本读文件注入，这里保留占位）
-    None,
-    "a tall slender build with elongated vertical proportions, slim yet voluptuous body, a pronounced hourglass figure, her legs longer than her torso reaching up to her chest, smooth long legs with slender firm thighs, a tiny sharply defined waistline that flares out to the hip, wide hips, a high tight peach shaped bottom, two round buttocks that curve out in a smooth peach-like swell, large full breasts held up in a lifted rounded shape, a deep natural cleavage, pale porcelain skin, luminous ivory skin, smooth soft skin texture, natural skin pores visible",
-    "a tall slender build with elongated vertical proportions, a slim yet voluptuous physique, a clearly hourglass silhouette, her thighs long and smooth with a firm muscle line, a very narrow waist that curves into full rounded hips, a high sculpted peach shaped bottom, two full round buttocks with a smooth lifted curve, large heavy breasts sitting high and firm on her chest, a deep shadowed cleavage, warm honey skin, luminous tan skin, smooth soft skin texture, fine skin pores visible",
-    "a tall slender build with long vertical proportions, a slim yet voluptuous body with an hourglass shape, smooth long legs, slender firm thighs, a razor-thin waistline flaring into wide hips, a high tight peach shaped bottom, two round firm buttocks curving out in a smooth swell, large full breasts lifted into a rounded shape, a deep natural cleavage, pale ivory skin, luminous porcelain skin, smooth soft skin texture",
-    "a tall slender build, slim yet voluptuous with an exaggerated hourglass curve, her legs noticeably longer than her torso, smooth long legs, slender toned thighs, a tiny defined waist flaring to broad hips, a high tight peach shaped bottom, two round buttocks with a smooth lifted swell, large full breasts held high and forward, a deep natural cleavage, warm pale skin, luminous ivory skin, smooth soft skin texture, natural skin pores visible",
+    # 🔴 11-15 减法 = 体型段单一写法 = 200 字 = 全库 0 第二份
+    "slim yet voluptuous hourglass figure, 92-60-92, her legs are longer than her torso, slender firm thighs, her waist very slim, her hips are wide, her breasts are large sitting high and firm, pale skin,",
 ]
 
 

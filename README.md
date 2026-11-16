@@ -11,8 +11,8 @@
 
 | 层 | 是什么 | 在哪 |
 |---|---|---|
-| **灵魂层** | 人格设定本体（SOUL.md）+ 深层档案 | `soul/` |
-| **技能层** | 出图 / 提示词 / 反推 / 抽卡 等 12 个技能 | `skills/` |
+| **灵魂层** | 人格设定本体（SOUL.md，含全部细则摊平） + 深层档案 | `soul/` |
+| **技能层** | 出图 / 提示词 / 反推 / 抽卡 / 批次 等 13 个技能 | `skills/` |
 | **素材层** | 提示词库 + 铁律 + 现役工作流 JSON | `references/` `workflows/` |
 
 设计上的一贯原则：**同一件事只有一处正文，别处只写指针**。所有技能档都遵守这条，所以不会出现「两个文件各写一半规则、互相打架」的情况。
@@ -28,6 +28,8 @@ git clone https://github.com/Yevgie/yuer-agent-kit.git
 cd yuer-agent-kit
 cp soul/SOUL.md ~/.hermes/SOUL.md          # 或你自己的 agent 配置目录
 ```
+
+`soul/SOUL.md` = 人格骨架 + **全部细则正文摊平在末尾附录** = 一个文件读完，不用追指针。
 
 ### 2. 取技能层
 
@@ -50,8 +52,8 @@ cp -r skills/yuer-moss-prompt ~/.hermes/skills/                 # Moss 架构师
 
 | 文件 | 用途 |
 |---|---|
-| `yuer_moody_fast.json` | Krea2 主线出图 |
-| `yuer_moodyMoss_fast.json` | Moss 主线出图 |
+| `yuer_moody_fast.json` | **Krea2 主线出图（默认档）** |
+| `yuer_moodyMoss_fast.json` | Moss 主线出图（中文强） |
 | `api_qwen3.5_9b_反推_默认.json` | Qwen 9B 反推（8 段结构化） |
 | `api_qwen3.5_4b_反推_快速筛.json` | Qwen 4B 反推（快速筛） |
 
@@ -72,6 +74,7 @@ cp -r skills/yuer-moss-prompt ~/.hermes/skills/                 # Moss 架构师
 | `creative/yuer-image-delivery` | 发图链路 + 回话极简纪律 |
 | `creative/yuer-pose-diversity` | 姿势 / 景别 / 视角多样性 |
 | `creative/yuer-camera-composition-style` | 机位 / 景别 / 焦段规范 |
+| `creative/yuer-batch-image-runner` | 批量出图 runner |
 
 ### 反推与抽卡
 
@@ -81,9 +84,16 @@ cp -r skills/yuer-moss-prompt ~/.hermes/skills/                 # Moss 架构师
 | `creative/yuer-character-roster` | 角色名册 = 抽卡系统 |
 | `yuer-run-one-brief` | 一句话出图固定入口 |
 
+### 编排
+
+| 技能 | 干什么 |
+|---|---|
+| `yuer-image-trigger-discipline` | 出图道 / 抽卡道两套规矩的边界 |
+| `creative/yuer-skill-design-philosophy` | 技能档设计哲学（指针 / 瘦身 / 加新减旧） |
+
 ---
 
-## 三条最值钱的设计
+## 五条最值钱的设计
 
 ### ① 同一件事只留一处正文
 
@@ -91,7 +101,14 @@ cp -r skills/yuer-moss-prompt ~/.hermes/skills/                 # Moss 架构师
 
 指针不写版本号（会漂），只写「见 XXX」。
 
-### ② 两个模型不能共用一份提示词
+### ② 参数都有字数上限
+
+- **体型段 = 200 字**（社区词 + 腿比躯干长 + 92-60-92 围度 + 腰臀胸句 + 宽胯 + 大胸紧翘）
+- **脸部段 = 200 字**（发型发色 + 3 个物理量表情 = 禁写五官）
+
+理由 = 约束越少 = 创意越活。堆得越多越死板。
+
+### ③ 两个模型不能共用一份提示词
 
 `yuer-krea2-prompt` 和 `yuer-moss-prompt` 是分开的，因为物理管线不同：
 
@@ -99,11 +116,14 @@ cp -r skills/yuer-moss-prompt ~/.hermes/skills/                 # Moss 架构师
 |---|---|---|
 | 提示词语言 | 英文 | 中文散文 |
 | 负向词 | **一个都不写**（工作流用 ConditioningZeroOut） | 真 CLIPTextEncode 负向串 |
-| 坐标 / bbox | 无 | 无（本地工作流没这节点） |
 
 共用一份必然两头不讨好。
 
-### ③ 先做事再回话
+### ④ 抽卡 = 完全随机
+
+不防重复、不去重、不排除记录号。抽到啥出啥。抽到废牌（拟人 / 乱码 / 视频规格牌）就再抽一张。
+
+### ⑤ 先做事再回话
 
 没跑过的不许说存在，没落盘的不许说发了。写文案 ≠ 做动作，「马上发」≠ 真发了。
 
@@ -115,30 +135,49 @@ cp -r skills/yuer-moss-prompt ~/.hermes/skills/                 # Moss 架构师
 yuer-agent-kit/
 ├── README.md
 ├── soul/
-│   ├── SOUL.md                    # 人格本体（四层结构）
-│   └── SOUL_references/           # 深层档案 6 份
-├── skills/
+│   ├── SOUL.md                    # 人格本体 + 细则全文摊平附录
+│   └── SOUL_references/           # 深层档案 5 份
+├── skills/                        # 13 个技能
 │   ├── creative/yuer-image/       # 出图总技能
 │   ├── creative/yuer-image-delivery/
 │   ├── creative/yuer-character-roster/
 │   ├── creative/yuer-reverse-inference/
 │   ├── creative/yuer-pose-diversity/
 │   ├── creative/yuer-camera-composition-style/
+│   ├── creative/yuer-batch-image-runner/
+│   ├── creative/yuer-skill-design-philosophy/
 │   ├── yuer-prompt-writer/
 │   ├── yuer-krea2-prompt/
 │   ├── yuer-moss-prompt/
-│   └── yuer-run-one-brief/
+│   ├── yuer-run-one-brief/
+│   └── yuer-image-trigger-discipline/
 ├── references/
-│   ├── 铁律/                       # 7 份铁律（含身材唯一真理源）
-│   └── 提示词库-nsfw.txt          # 成品提示词库
+│   ├── 铁律/                       # 7 份铁律（含身材唯一真理源，摊平版）
+│   └── 提示词库-nsfw.txt          # 成品提示词库（4.2 万条）
 └── workflows/                      # ComfyUI 工作流 JSON ×4
 ```
+
+---
+
+## 怎么重建这个包
+
+公开包 = **精选 + 摊平 + 脱敏** 三步，不是一股脑 rsync：
+
+```bash
+python3 scripts/build_public_release.py --out <目标目录>   # 生成
+python3 scripts/scan_public_release.py <目标目录>        # 扫描（不过 = 不许推）
+```
+
+- **精选** = 只打包公开包清单内的技能 = 0 带进一堆不相关的东西
+- **摊平** = 本地「指针档」（本档已拆分 = 索引表）→ 内联它指向的正文 = 别人 clone 下来一个文件就能读懂
+- **脱敏** = 密钥 / 内网 IP / 私密路径 / 真实人名 → 占位符或通用称呼
 
 ---
 
 ## 许可
 
 拿去用，随便改。
+
 「安语儿」这个名字和人设是我的，**别人拿去用请换个名** —— 骨架随便抄，名字留着就成我的了。
 
 ---

@@ -1,3 +1,12 @@
+
+> **本档已拆分** = 全文 7,029 字 → 2 份（每份 ≤3800 字）= 只搬不改写 = 下表为原文索引。
+
+| 新档 | 原章节 | 字数 |
+
+---
+
+<!-- 摊平自：templates/references/moody_character_centric_system-01-moody-人物中心提示词架.md -->
+
 # moody 人物中心提示词架构师 · LLM system prompt（模式 B 专用）
 
 > **来源** = moody 作者分享的 `moodyKrea2PromptWriting_v10_2.doc`（Character-Centric Image Prompt Architect，9 节 / 7001 字符）。
@@ -72,6 +81,12 @@ Example: "wearing a fitted black leather jacket, dark high-waisted jeans hemmed 
 (e) Body posture and action
 Describe exactly: body direction, head direction, arm position, hand position, leg position, interaction with objects or people.
 Always specify important limbs. Name left and right.
+
+---
+
+<!-- 摊平自：templates/references/moody_character_centric_system-02-moody-人物中心提示词架.md -->
+
+# moody 人物中心提示词架构师 · LLM system prompt（模式 B 专用）
 Example: "Her right hand rests on the table while her left arm hangs beside her body."
 Avoid vague descriptions: "She interacts with her." Instead: "Her left hand reaches toward her shoulder while she remains standing behind her."
 
@@ -133,3 +148,5 @@ Do not add titles, explanations, or bullet points.
 The final result should read like a professional photographer describing the exact arrangement of people and objects inside a single image.
 
 ===
+
+---

@@ -1,4 +1,13 @@
-# 铁律·prompt 写法 + 实战版）
+
+> **本档已拆分** = 全文 4,573 字 → 2 份（每份 ≤3800 字）= 只搬不改写 = 下表为原文索引。
+
+| 新档 | 原章节 | 字数 |
+
+---
+
+<!-- 摊平自：references/铁律/references/01-prompt写法铁律-01-铁律-prompt-写法-实.md -->
+
+# 铁律·prompt 写法 + 实战版
 
 > 来源：yuer-image SKILL.md v3.8 13 铁律段·3-7 段·06-30 拆分落地
 
@@ -18,12 +27,12 @@
 
 一张图只展示一个连续身体区域 = 脸+胸+屁股不可同框 = 仰躺看不到屁股 = 5 问自检必走
 
-## 铁律 6a · 🆕 多人物规则·+ 强化
+## 铁律 6a · 多人物规则
 
-- 出几个人画几个人
-- **绝不画任何男角色**（包括主人/男友/围观男性/POV 视角里的男主）
-- **想表现男主在场 = 改用机械手 / 物品占位 / 抽象触手**
-- 绝不写男主也不写"他的视角"
+- 出几个人画几个人。
+- **禁陌生男人**（男友 / 围观男性 / NPC / POV 里不认识的人）= 公共场景只许女生 + 主人。
+- **🔴 主人可完整出镜** = 按 `personal/yuer-identity-anchor` 的 MASTER_FACE + MASTER_PROMPT 写 = 完整写法见 `references/主人在场-主人完整出镜写法与门禁-01-主人在场-主人完整出镜的写法.md`（11-15 修正 = 旧版「连主人也禁画」与 USER.md 主人出镜钦定冲突 = 作废）。
+- 不写「他的视角」= POV 镜头就写机位，不写一个看不见的人。
 
 ## 铁律 7 · feishu_send.py
 
@@ -51,7 +60,7 @@
 2. **绝不放 MEMORY** = MEMORY 是"用户是谁/当前状态"，技能是"怎么做事"= 主人的 07-12 钦定哲学
 3. **立刻拍版回复** = "主人拍板 = 1 步完成落档" = 不拖延 = 不跨多档散落
 
-**🔴 反模式（实战打脸）**：
+**🔴 反模式**：
 - ❌ 主人说"以后用这个" = 只回"好嘞 记下了" = 不落档 = 下次又问 = 踩坑
 - ✅ 立刻打开最贴近的 skills + 找到铁律档 + 新增「」一节 + 描述必带 14 关键词顺序 + 0 反问铁律 + 覆盖规则（主人 brief 单独写尺寸时优先）
 
@@ -91,9 +100,13 @@ print(reverse(img_path, brief="请只客观描述画面中每个人物的嘴巴�
 
 **闭环**：修复版必须再跑一次同一句 brief 复验，拿到「正常」原文才能发给主人。同一句式可换区域词（手/脚/髋）复用到其他畸形排查。
 
+---
+
+<!-- 摊平自：references/铁律/references/01-prompt写法铁律-02-铁律-8-10-24-实战钦.md -->
+
 ## 铁律 8 · 🆕 10-24 实战钦定 ·语儿身材参数（大胸紧翘 / 极细腰 / 蜜桃翘臀不肥 / 大长腿 / 粉嫩乳头 / 锁骨不约束）
 
-> **🔴 参数真值 = 唯一在 `02-身材特征档.md`（v1.5）** = 本节只放写法 SOP = **两处不重复抄参数 = 0 自相矛盾**。
+> **🔴 参数真值 = 唯一在 `references/铁律/02-身材特征档.md`（v1.5）** = 本节只放写法 SOP = **两处不重复抄参数 = 0 自相矛盾**。
 >
 > **v1.5 已废止小胸路线**（`hemispherical B-cup` / `petite natural breasts` / `small bust size matching slim physique`）= 见到即删；**并禁低垂形态词**（`resting low and heavy` / `sagging` / `drooping`）= 大且紧翘不下垂；**臀禁肥**（`huge ass` / `bubble butt` / `plump rounded buttocks` / `thick thighs`）= 蜜桃圆润 + 腰臀比完美；**锁骨一律不写**。
 
@@ -113,3 +126,5 @@ print(reverse(img_path, brief="请只客观描述画面中每个人物的嘴巴�
 - 腰 → `a very slim narrow waist` + sharply dips in at the ribs
 - 臀 → `a high tight peach shaped bottom` + `two round buttocks that curve out in a smooth peach-like swell and lift high` + `a narrow waist flaring into full hips and a pronounced waist-to-hip ratio`（**禁肥臀粗腿**）
 - 皮肤 → 冷白皮干爽版（禁 wet / glossy / oily）
+
+---

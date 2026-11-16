@@ -60,7 +60,7 @@ from pathlib import Path
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LEAVE_DIR = os.environ.get("YUER_LEAVE_DIR", "/path/to/media")
 DEFAULT_COMFYUI_SERVER = "http://192.168.x.x:8188"  # 实战 218 钦定远端
-# 🔴🔴🔴 11-10 21:42 主人钦定「日常你自己决定这两个流你用哪个」= 我定的 = 默认档切 MOSS
+# 🔴🔴🔴 11-15 主人钦定「优先使用 KREA 2 吧」= 默认档 = yuer_moody_fast
 #    （默认无 LLM，豆包反推 prompt 直接进图模型 —— 实战 497 口径不变，只换工作流）
 #    理由 = 主人亲口判定 Moss 真实感强 + Moss 中文字一级棒 + 表情好；节点结构与 Krea2 兼容（627/599/698 一致）
 #    🔴 洗图道仍 = yuer_moody_fast_wash（Moss 没有 wash 变体 = 0 静默兜底）

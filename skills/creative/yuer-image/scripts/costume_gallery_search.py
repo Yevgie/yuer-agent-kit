@@ -34,7 +34,7 @@ import random
 import sys
 
 GAL_ROOT = os.environ.get(
-    "COSTUME_GALLERY_ROOT", "/vol2/1000/costume_gallery/ai-costume-gallery"
+    "COSTUME_GALLERY_ROOT", "/path/to/data/costume_gallery/ai-costume-gallery"
 )
 DB = os.path.join(GAL_ROOT, "data", "costume.json")
 

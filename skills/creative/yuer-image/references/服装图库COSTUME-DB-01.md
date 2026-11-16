@@ -1,3 +1,12 @@
+
+> **本档已拆分** = 全文 7,454 字 → 2 份（每份 ≤3800 字）= 只搬不改写 = 下表为原文索引。
+
+| 新档 | 原章节 | 字数 |
+
+---
+
+<!-- 摊平自：服装图库COSTUME-DB-01-01-服装图库-COSTUME-D.md -->
+
 # 服装图库 · COSTUME-DB-01（姿势库的姊妹库）
 
 > **唯一职责** = 出图时当**衣服词典**（挑一套 → 拆成提示词里的服饰段），编辑道时当**换装参考源**（当 image_2 喂给 Qwen21）。
@@ -17,7 +26,7 @@
 | 画面 | **幽灵人台**（无头 · 无手臂 · 衣服撑在隐形身上）+ 浅冷灰纯背景 = **纯服装 · 0 人物** |
 | 授权 | 免费用于作品创作 / 商用 / 编辑 / 参考 · **禁原图转售与再配布** · 署名不需要 · 图像均为 t2i 生成的虚构服装 |
 
-**本地路径** = `/vol2/1000/costume_gallery/ai-costume-gallery/`
+**本地路径** = `/path/to/data/costume_gallery/ai-costume-gallery/`
 - `img/<ID>.webp` = 全量图
 - `data/costume.json` = 元数据（id / カテゴリ / キーワード / サムネ / 画像 / 原寸）
 
@@ -77,7 +86,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 **收尾判据 = 文件数 + 每张字节数**：0 信任「脚本说 ok」= 逐个 `os.path.getsize > 2000` 核。
 **残留零星失败 = 补拉一轮**（长退避 + 更多重试）= 不要重跑全量。
 
-**✅ 已装完（10-29）= 1407/1407 = 0 缺图 = 117MB**
+**✅ 已装完= 1407/1407 = 0 缺图 = 117MB**
 - `img/` 1407 张 webp，逐张 `getsize > 2000` 全过，抽样 6 张 `Image.open` 全部正常解码 = 1366×2048。
 - 16 线程首轮 `ok=1240 fail=48` → 补拉脚本（单线程长退避 8 次重试）`recovered 48` → 零缺。
 - **教训 = 线程池跑完必须跑一次「缺图核对 + 补拉」**（首轮 fail 数不为 0 = 一定有洞）= 只看 FINAL 行会漏。
@@ -113,9 +122,13 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 **🔴 换整套 = 属于「一处一改」的合法例外**（改的属性 = 服装 = 一个属性）= 之前「一次改三件衣服 = 重画」那次失败是因为同时改了**上衣+裙子+外套**三个独立属性；这里换的是**一整套**（一套 = 一个属性）= 实测通过。
 
+---
+
+<!-- 摊平自：服装图库COSTUME-DB-01-02-八-用法-C-姿势编辑道-已.md -->
+
 ## 八 · 用法 C：姿势编辑道 = 已有好图 + 姿势线稿（实测通过）
 
-**主人钦定思路**（10-29）：「服装库和姿势库，对于出来的图，做二次编辑，换个衣服，或者换个姿势，应该很好用。」
+**主人钦定思路**：「服装库和姿势库，对于出来的图，做二次编辑，换个衣服，或者换个姿势，应该很好用。」
 
 **🔴 之前姿势参考失败的根因 = image_1 用了四宫格**（它直接输出四宫格）= **改成「已有的一张单幅好图」当 image_1 + 姿势线稿当 image_2 = 编辑道换姿势 = 另一回事 = 实测通过**。
 
@@ -146,8 +159,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 | 库 | 本地 | ComfyUI input | 验证方式 |
 |---|---|---|---|
-| 服装库 1407 张 webp | `/vol2/1000/costume_gallery/ai-costume-gallery/img/` | ✅ 已全量上传，零失败 | `object_info/LoadImage` 的 image 列表里数 `.webp` = 1407 |
-| 姿势库 1439 张 png | `/vol2/1000/pose_gallery/ai-pose-gallery-zh/img/` | ✅ 已全量上传，零失败 | 同上，数 png |
+| 服装库 1407 张 webp | `/path/to/data/costume_gallery/ai-costume-gallery/img/` | ✅ 已全量上传，零失败 | `object_info/LoadImage` 的 image 列表里数 `.webp` = 1407 |
+| 姿势库 1439 张 png | `/path/to/data/pose_gallery/ai-pose-gallery-zh/img/` | ✅ 已全量上传，零失败 | 同上，数 png |
 
 **🔴 批量上传的可复用写法**（多线程 + 断点续传 + 上传前先问服务端已有啥）：
 ```python
@@ -227,3 +240,5 @@ POST /upload/image  files={"image":(...)}  data={"type":"input","overwrite":"tru
 | 10 · 材质对比 | 一件哑光 vs 一件反光（缎面 vs 棉 / 皮革 vs 纱）|
 
 **🔴 第 10 句的材质对比 = 必须来自这套衣服** = 0 写「皮肤反光 vs 棉质 T 恤」而这套衣服根本不是 T 恤。
+
+---

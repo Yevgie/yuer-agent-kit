@@ -1,3 +1,12 @@
+
+> **本档已拆分** = 全文 4,437 字 → 2 份（每份 ≤3800 字）= 只搬不改写 = 下表为原文索引。
+
+| 新档 | 原章节 | 字数 |
+
+---
+
+<!-- 摊平自：moss_专属能力-01-Moss-专属能力-实测出来.md -->
+
 # Moss 专属能力 = 实测出来的三条 + 三个坑
 
 > **唯一职责** = 记 Moss 这条道**实测**跟别的道不一样的地方 = 写 Moss 提示词时优先用这些、避开这些坑。
@@ -89,7 +98,7 @@ Moss 的日常场景真实度是它最强的一档 = **别把它拍干净**。
 | 人脸锁 | ✅ `zxct2.0_figziz_moss-000060` | ✅ `zxct2.4_fizgig_krea2` |
 | 坐标 / 框节点 | ❌ 无 | ❌ 无 |
 
-**✅ 口径已统一（11-14 修）** = `模型路由与四工作流能力矩阵.md` §5.1 原有一句「Moss = 不锁脸」= **已过期**（11-10 起 Moss 也锁语儿脸）= **本轮已改掉**（现写法 = 「**锁脸** = 语儿的脸（`zxct2.0_figziz_moss-000060`）= 出图直接就是语儿，不用改走 Krea2」）= 与 §3.1 一致 = 全库 0 矛盾。
+**✅ 口径已统一（11-14 修）** = `creative/yuer-image/references/模型路由与四工作流能力矩阵.md` §5.1 原有一句「Moss = 不锁脸」= **已过期**（11-10 起 Moss 也锁语儿脸）= **本轮已改掉**（现写法 = 「**锁脸** = 语儿的脸（`zxct2.0_figziz_moss-000060`）= 出图直接就是语儿，不用改走 Krea2」）= 与 §3.1 一致 = 全库 0 矛盾。
 
 > **注** = 矩阵第 40 行那句「不锁脸 = 出路人/别人的脸」**不是矛盾** = 那是另一套机制（要出别人的脸 = 走 `yuer_run_nolora.py` 把 LoRA 全关）= 别混。
 
@@ -107,6 +116,11 @@ Moss 的日常场景真实度是它最强的一档 = **别把它拍干净**。
 **修法（11-14 已落）** = 翻译只对**不吃中文**的道生效；中文原生道走白名单跳过。
 
 ```python
+
+---
+
+<!-- 摊平自：moss_专属能力-02-yuer_ka_pai_zh.md -->
+
 # yuer_ka_pai_zhi_chu.py
 _CN_NATIVE_WORKFLOWS = ("yuer_moodyMoss_fast",)
 if (re.search(r"[\u4e00-\u9fff]", prompt_text)
@@ -116,7 +130,7 @@ if (re.search(r"[\u4e00-\u9fff]", prompt_text)
 
 **实测验证** = Moss 道归档的 prompt = 中文原文（0 英文字符）｜Krea2 道照旧翻译（stdout 仍打「中文已翻译 1 段」）= **两条道都没误伤**。
 
-**🔴 残留 = 已修（11-14）** = 社区词典 `下身赤裸 → ['no lower clothing']`（= 没穿下装 ≠ 赤裸）**已改**：
+**🔴 残留 = 已修** = 社区词典 `下身赤裸 → ['no lower clothing']`（= 没穿下装 ≠ 赤裸）**已改**：
 
 ```
 zh2en["下身赤裸"] = ["nude lower body", "naked lower body", "no lower clothing"]
@@ -126,7 +140,7 @@ zh2en["下身赤裸"] = ["nude lower body", "naked lower body", "no lower clothi
 
 **顺带挖出更大的一个** = 那词典的 `zh2en` 侧有 **389 个键带 `}}}` / `]}` 抓取残留**（社区原帖的括号注释没清干净）= 实测「上身赤裸」模糊命中「袈裟且上身赤裸」→ 选出 `kasaya}topless` = 垃圾 tag 进提示词。
 
-**修法 = 不改词典、改 `_pick()`**（`zh_translate.py`）= 加一条过滤：候选里含 `}` `]` `【】` = 不是 tag = 整条丢掉。
+**修法 = 不改词典、改 `_pick`**（`zh_translate.py`）= 加一条过滤：候选里含 `}` `]` `【】` = 不是 tag = 整条丢掉。
 
 **为什么改代码不改词典** = 词典是社区上游产物 = 下次重新抓取就白改 = 治本要治在**消费端**。
 
@@ -143,3 +157,5 @@ zh2en["下身赤裸"] = ["nude lower body", "naked lower body", "no lower clothi
 | 出图后验图 | `creative/yuer-image/scripts/yuer_verify_image.py` |
 | LoRA 审计真值 | `creative/yuer-image/scripts/yuer_lora_audit.py` |
 | 架构师正文 | `../templates/moody_moss_caption_zh.txt` |
+
+---

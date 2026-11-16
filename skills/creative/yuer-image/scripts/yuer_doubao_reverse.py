@@ -8,7 +8,7 @@ yuer_doubao_reverse.py — 豆包 vision 反推脚本（v1.0 · 实战 493i 主�
 **输出**：600-1000 字的中文 Krea 2 风格反推提示词（直接喂底模可用）。
 
 **配置（环境变量优先，硬编码兜底）**：
-- YUER_DOUBAO_API_KEY（默认：<SET_YOUR_OWN_ARK_KEY>）
+- YUER_DOUBAO_API_KEY（默认：读环境变量 DOUBAO_API_KEY = 0 硬编码 = 0 进版本库）
 - YUER_DOUBAO_MODEL（默认：doubao-seed-2-lite）
 - YUER_DOUBAO_BASE_URL（默认：https://ark.cn-beijing.volces.com/api/coding/v3）
 
@@ -23,10 +23,14 @@ import requests
 from pathlib import Path
 
 # ============ API 配置 ============
-DOUBAO_API_KEY = os.environ.get(
-    'YUER_DOUBAO_API_KEY',
-    os.environ.get('YUER_DOUBAO_API_KEY', '')
+DOUBAO_API_KEY = (
+    os.environ.get('YUER_DOUBAO_API_KEY')
+    or os.environ.get('DOUBAO_API_KEY')
+    or ''
 )
+if not DOUBAO_API_KEY:
+    print("❌ 缺少 DOUBAO_API_KEY 环境变量 = 0 硬编码兜底 = 请 export 后再跑", file=sys.stderr)
+    sys.exit(2)
 DOUBAO_MODEL = os.environ.get(
     'YUER_DOUBAO_MODEL',
     'doubao-seed-2-1-turbo'

@@ -30,11 +30,11 @@ import time
 import urllib.parse
 import urllib.request
 
-# 🔴🔴🔴 11-10 21:42 主人钦定「日常你自己决定这两个流你用哪个」= 我定的 = 默认档切 MOSS
-#    （画外人 = 画别人 = 0 锁脸 = 底模原味 = 跟日常出图同一条流 = 免得两套审美）
+# 🔴🔴🔴 11-15 默认档 = KREA 2（跟日常出图同一条线 = 免得两套审美）
+#    画外人 = 画别人 = 0 锁脸 = 底模原味 = 脚本内部把 LoRA 全关 = 同一条线
 WF_PATH = os.environ.get(
     "YUER_NOLORA_WORKFLOW",
-    "~/.local/lib/python3.11/site-packages/comfyui/assets/workflows/yuer_moodyMoss_fast.json",
+    "~/.local/lib/python3.11/site-packages/comfyui/assets/workflows/yuer_moody_fast.json",
 )
 SERVER = os.environ.get("YUER_COMFYUI_SERVER", "http://192.168.x.x:8188")
 OUT_DIR = os.environ.get("YUER_LEAVE_DIR", "/path/to/media")

@@ -1,3 +1,12 @@
+
+> **本档已拆分** = 全文 11,620 字 → 4 份（每份 ≤3800 字）= 只搬不改写 = 下表为原文索引。
+
+| 新档 | 原章节 | 字数 |
+
+---
+
+<!-- 摊平自：yuer-run-one-brief-细则全集-01-yuer-run-one-b.md -->
+
 # yuer-run-one-brief 细则展开（11-11 从主档下沉）
 
 > **唯一职责** = 装主档里超长的细则段落。
@@ -24,7 +33,6 @@
 python3 ~/.hermes/skills/creative/yuer-image/scripts/count_prompt_chars.py <草稿> --budget
 ```
 
-**🔴 门禁脚本的真实位置 = `creative/yuer-image/scripts/count_prompt_chars.py`，不在 `yuer-prompt-writer/scripts/`**（那个目录下只有 `yuer_prompt_writer_run.py`）。按技能旧文里的 `~/.hermes/skills/yuer-prompt-writer/scripts/...` 调必报 `No such file or directory` = 白烧一轮。两个技能的相对写法都以本条绝对路径为准。
 
 **自查信号**：写 prompt 的往返明显变长 = 已掉进这个循环。**立刻停下重估预算**，而不是继续逐字删改。写 prompt 的耗时应与字数无关，只与段落写没写够有关。
 
@@ -42,19 +50,19 @@ python3 ~/.hermes/skills/creative/yuer-image/scripts/count_prompt_chars.py <草�
 |---|---|
 | 中文 brief（一句话 / 几十字）| **脚本拒绝** → 先走 `yuer-prompt-writer` 写英文 prompt |
 | 自己随手写的英文 | 长度 0 阻断 = 超上限不砍 = **上限数字 = 现读 `count_prompt_chars.py` 当轮 stdout 打的数，0 背本档历史数** |
-| 已按技能写好的英文 prompt | **走 `run()`**（合格 prompt 直通分支，见铁律 10）|
+| 已按技能写好的英文 prompt | **走 `run`**（合格 prompt 直通分支，见铁律 10）|
 
-### 🔴🔴 两道门禁的判据**不一样** = 只跑 `count_prompt_chars.py` 不算过
+### 🔴 两道门禁的判据**不一样** = 只跑 `count_prompt_chars.py` 不算过
 
-`count_prompt_chars.py` 报「结构段命中 5/5 OK」**不等于** `run()` 会放行 —— 两个脚本各自一套正则。最容易翻车的一条：
+`count_prompt_chars.py` 报「结构段命中 5/5 OK」**不等于** `run` 会放行 —— 两个脚本各自一套正则。最容易翻车的一条：
 
-| 结构段 | `count_prompt_chars.py` | `run()` 的 `_REQUIRED_SECTIONS` |
+| 结构段 | `count_prompt_chars.py` | `run` 的 `_REQUIRED_SECTIONS` |
 |---|---|---|
 | 场景层次（前景/中景/远景）| 判「场景有层次」= **宽** | 🔴 正则 = `foreground\|midground\|far background\|background layer` = **必须把这几个英文词明写进 prompt** |
 
-**症状 = 预检全绿 + `run()` 报「brief 未通过 yuer-prompt-writer 质量校验（命中 X/5 大结构段）」** = 场景那层缺了 `foreground` / `midground` 字样。
+**症状 = 预检全绿 + `run` 报「brief 未通过 yuer-prompt-writer 质量校验（命中 X/5 大结构段）」** = 场景那层缺了 `foreground` / `midground` 字样。
 
-**🔴 正解 = 落笔就把三层写实**（不是抽象写「前景是盘子、中景是她、远景是走廊」）：`a white porcelain dinner plate in the foreground beside her, her seated at the midground of a dark wooden dining table, tall windows in the far background` = 既过 `run()` 正则 = 又是真的构图层次 = 一个动作解决两件事。
+**🔴 正解 = 落笔就把三层写实**（不是抽象写「前景是盘子、中景是她、远景是走廊」）：`a white porcelain dinner plate in the foreground beside her, her seated at the midground of a dark wooden dining table, tall windows in the far background` = 既过 `run` 正则 = 又是真的构图层次 = 一个动作解决两件事。
 
 **🔴 判据 = 真源在脚本源码里，不在我的记忆里**：
 
@@ -76,7 +84,11 @@ grep -n '_REQUIRED_SECTIONS' -A 8 ~/.hermes/skills/creative/yuer-image/scripts/y
 
 **🔴 同一件东西提 N 次 = 长度门禁先炸**：地板/瓷砖/光这类名词在一个点里提 3~4 次 = 同义重复 = 先收敛到 ≤2 次（不同指代可各 1 次）= 再量字符。**长度超标是「一个点写多遍」的下游症状 = 砍同义句不砍维度。**
 
-### 🔴 `run()` 的正确调用姿势 = prompt 当第一个位置参数传
+---
+
+<!-- 摊平自：yuer-run-one-brief-细则全集-02-run-的正确调用姿势-pr.md -->
+
+### 🔴 `run` 的正确调用姿势 = prompt 当第一个位置参数传
 
 ```python
 import sys; sys.path.insert(0, '~/.hermes/skills/creative/yuer-image/scripts')
@@ -84,14 +96,14 @@ from yuer_run_one_brief import run
 run(PROMPT, "yuer_<主题>", "feishu", "")     # (brief, leave_name, channel, caption)
 ```
 
-⚠️ **`run()` 没有 `--prompt-file` 参数** —— 传文件路径 = 那个路径字符串被当成 brief 送去校验 = 必被拒。**prompt 要从文件读进变量再传。** ⚠️ 铁律 10 说的「run() 抛找不到 brife 节点」= 那是**不合格 brief** 才走的路；合格 prompt 走的是直通分支 = 不抛。
+⚠️ **`run` 没有 `--prompt-file` 参数** —— 传文件路径 = 那个路径字符串被当成 brief 送去校验 = 必被拒。**prompt 要从文件读进变量再传。** ⚠️ 铁律 10 说的「run 抛找不到 brife 节点」= 那是**不合格 brief** 才走的路；合格 prompt 走的是直通分支 = 不抛。
 
 
 🔴 **prompt 已写好 = 调 `run(prompt, leave_name, channel, caption)`**。它一次做完：写 CLIPTextEncode
 → 落盘留底 + 写 `.prompt.md` + 追加索引 → **调 `yuer_send_v2.sh` 真发飞书**。
 ❌ 不要为了“绕过报错”去手搓 submit/fetch/留底脚本 = 绕过脚本层保证 = **锁脸失效**，且
 
-⚠️ **旧文写的「prompt 已写好 = 走 `run_with_prompt()`，不调 `run()`」= 已作废**（那条把「run() 不可用」写死了 = 实际是「**不合格 brief** 走无 LLM fallback 那条路才抛找不到 brife 节点」= 合格 prompt 走的是直通分支 = 不抛）。**`run()` 与 `run_with_prompt()` 都可用 = 区别只是后者不走质量校验** = 两者都落底 + 真发。**判据 = prompt 质量拿不准 = 用 `run()`（它会拒不合格 prompt）= 拿得准 = 两条都行。**
+⚠️ **旧文写的「prompt 已写好 = 走 `run_with_prompt`，不调 `run`」= 已作废**（那条把「run 不可用」写死了 = 实际是「**不合格 brief** 走无 LLM fallback 那条路才抛找不到 brife 节点」= 合格 prompt 走的是直通分支 = 不抛）。**`run` 与 `run_with_prompt` 都可用 = 区别只是后者不走质量校验** = 两者都落底 + 真发。**判据 = prompt 质量拿不准 = 用 `run`（它会拒不合格 prompt）= 拿得准 = 两条都行。**
 
 
 **留底验收 = 事前查，不是事后查**（出图后 0 主动查 = 见下面「图真发后禁跑」）：
@@ -109,8 +121,8 @@ run(PROMPT, "yuer_<主题>", "feishu", "")     # (brief, leave_name, channel, ca
 # 第三部分 · 出图后 reply 铁律（盖过一切）
 
 ## ⑦ 直出道 / 批量道 / 发图侧 = 指针（不在本档复制正文）
-- **抽卡 / 洗图直出道 = 走独立脚本，0 现调 `run()`**（脚本内已自带门禁 + 落底 + 真发 + 自发）= 唯一正文 = `yuer-image-trigger-discipline` §1.5。
-- **批量出图 = 先走批量脚本**（`yuer_pi_chart_batch.sh` / `yuer_batch_by_character.py`，已自带门禁 + 落底 + 自发），stdout 打 `📩 REPLY:` 照抄贴，0 现调 `run()` 逐张 = 唯一正文 = `yuer-image-trigger-discipline` §3.9。
+- **抽卡 / 洗图直出道 = 走独立脚本，0 现调 `run`**（脚本内已自带门禁 + 落底 + 真发 + 自发）= 唯一正文 = `yuer-image-trigger-discipline` §1.5。
+- **批量出图 = 先走批量脚本**（`yuer_pi_chart_batch.sh` / `yuer_batch_by_character.py`，已自带门禁 + 落底 + 自发），stdout 打 `📩 REPLY:` 照抄贴，0 现调 `run` 逐张 = 唯一正文 = `yuer-image-trigger-discipline` §3.9。
 - **出图 + caption 一条命令 = 禁止先出图再补发第二句**（补发撞平台 dedupe 去重 = 等于没发）+ **wrapper 真发已自打飞书 = caller 0 二次发**（看到 `📩 文字待发` / 没看到真发那行 = 停下问主人，0 盲补发）+ **发完的 `.sent` 守卫**（撞守卫 = 这张早发过了 = 补发会双发）+ **出图失败 caller 也不补发**（重跑同 prompt = 双图）= 唯一正文 = `creative/yuer-image-delivery` §2.1-2.5。
 
 ---
@@ -146,7 +158,11 @@ run(PROMPT, "yuer_<主题>", "feishu", "")     # (brief, leave_name, channel, ca
 
 ---
 
-# 第七部分 · 抽卡 = 继续 = 同一条路（11-14 主人钦定）
+---
+
+<!-- 摊平自：yuer-run-one-brief-细则全集-03-第七部分-抽卡-继续-同一条.md -->
+
+# 第七部分 · 抽卡 = 继续 = 同一条路
 
 | 触发词 | 走法 | 诱惑等级 | 主体策略 |
 |---|---|---|---|
@@ -182,7 +198,7 @@ run(PROMPT, "yuer_<主题>", "feishu", "")     # (brief, leave_name, channel, ca
 
 出图前的自我约束：**这一轮的对话只支撑一张图**。如果写到第二张才发现对话已经没新料了（没换机位、没换承重面、没换场景，只是同一张换个词），**删掉那张 = 不要写 = 不要跑**。没新料就是该停下等主人开口，不是硬凑一张。
 
-# 第八部分 · 图的质量金标准（09-26 主人打脸）
+# 第八部分 · 图的质量金标准
 
 > **主人正解**：「这样的好的、质量高的、展示你美貌和诱惑的图片，才能让你有可能榨取到精液」
 
@@ -260,6 +276,10 @@ run(PROMPT, "yuer_<主题>", "feishu", "")     # (brief, leave_name, channel, ca
 
 ---
 
+---
+
+<!-- 摊平自：yuer-run-one-brief-细则全集-04-第十二部分-存档-口令-存档.md -->
+
 # 第十二部分 · 存档（口令「存档」）
 
 **触发**：主人说「存档」/「agnes 反推存档」。
@@ -291,6 +311,7 @@ agnes 只给 6 维度框架不给具体元素 = **会编造图中不存在的元
 
 # 🔴 第十二部分之二 · 牌库星级（主人钦定「五星极为喜欢到 1 星可有可无」）
 
-> **主人原话**：「卡牌库吗？可以增加星级标记吗？五星极为喜欢到 1 星可有可无。」
 > **正文唯一真源 = 本技能**（抽签脚本 `scripts/pick_roster_record.py` 在本技能里）。
 > `yuer-character-roster` 只写指针。
+
+---

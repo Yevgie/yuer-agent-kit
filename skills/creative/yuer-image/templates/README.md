@@ -1,12 +1,10 @@
-# yuer 批量提速工具集 (07-09)
+# yuer 批量提速工具集 
 
 ## 4 个工具
 
 ### 1. main_template.txt
 主模板, 灵魂脸 3 项 + trigger 词 + 结尾后缀已嵌入, 主人只填 [SCENE_BRIEF]
 
-### 2. prompt_blacklist_check.py
-错词自检, 出图前必跑: `python3 prompt_blacklist_check.py /tmp/yuer_prompt.txt`
 
 ### 3. view_api_pull.sh
 view API 代替 comfyui --poll, 跳过 8-15s 等待延迟: `bash view_api_pull.sh <job_id> /tmp/out.png`
@@ -20,5 +18,5 @@ view API 代替 comfyui --poll, 跳过 8-15s 等待延迟: `bash view_api_pull.s
 - 批量 8 张: 平均 16-18s/张 (实测)
 
 ## 铁律
-- 默认批量 8 张, 0 反问"要不要批量" (07-09 主人钦定)
+- 默认批量 8 张, 0 反问"要不要批量" 
 - 模板路径自动拼灵魂脸 3 项 + trigger 词 = 跳过子技能 = 提速关键

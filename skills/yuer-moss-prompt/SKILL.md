@@ -131,3 +131,5 @@ Moss 锁语儿的脸（`zxct1.0_figziz_moss-000060`）= **五官是 LoRA 画的*
 | 语儿专属硬锚 | `yuer-prompt-writer/references/语儿专属硬锚.md` |
 | 身材参数（唯一真值） | `creative/yuer-image/references/铁律/02-身材特征档.md` |
 | Krea 2 版 | `yuer-krea2-prompt/SKILL.md` |
+| `moss_专属能力-01-Moss-专属能力-实测出来.md` | Moss 专属能力 = 实测出来的三条 + 三个坑 | 3,183 |
+| `moss_专属能力-02-yuer_ka_pai_zh.md` | yuer_ka_pai_zhi_chu.py | 1,246 |

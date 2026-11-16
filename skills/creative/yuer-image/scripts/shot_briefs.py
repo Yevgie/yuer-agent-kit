@@ -20,49 +20,17 @@
 # 🔴 身体段 = 按「承重面 + 重心」动态生成 = 不再全批共用同一段
 BODY_BY_POSE = {
     "stand_relaxed": (
-        "a tall slender build with elongated vertical proportions, slim yet voluptuous body, "
-        "a pronounced hourglass figure, her weight settled onto one leg so the hip on that side "
-        "lifts, her legs long and smooth with slender firm thighs, a tiny sharply defined waistline "
-        "that flares out to the hip, wide hips, a high tight peach shaped bottom, two round buttocks "
-        "that curve out in a smooth peach-like swell, large full breasts held up in a lifted "
-        "rounded shape, a deep natural cleavage, pale porcelain skin, luminous ivory skin, "
-        "smooth soft skin texture, natural skin pores visible"),
+        "slim yet voluptuous hourglass figure, 92-60-92, her legs are longer than her torso, slender firm thighs, her waist very slim, her hips are wide, her breasts are large sitting high and firm, pale skin, her weight settled onto one leg so the hip on that side lifts,"),
     "stand_lean": (
-        "a tall slender build with elongated vertical proportions, a slim yet voluptuous physique, "
-        "her torso tilted into the wall behind her so her waist curves sharply, long smooth legs "
-        "with slender firm thighs, a very narrow waist that flares into full rounded hips, "
-        "a high tight peach shaped bottom, two full round buttocks with a smooth lifted curve, "
-        "large heavy breasts sitting high and firm on her chest, a deep shadowed cleavage, "
-        "warm honey skin, luminous tan skin, smooth soft skin texture, fine skin pores visible"),
+        "slim yet voluptuous hourglass figure, 92-60-92, her legs are longer than her torso, slender firm thighs, her waist very slim, her hips are wide, her breasts are large sitting high and firm, pale skin, her torso tilted into the wall behind her so her waist curves sharply,"),
     "sit_relaxed": (
-        "a tall slender build with long vertical proportions, a slim yet voluptuous body with a "
-        "clear hourglass shape, seated so her thighs press together and the line of her waist "
-        "reads sharply above them, smooth long legs, slender toned thighs, a razor-thin waistline "
-        "flaring into wide hips, a high tight peach shaped bottom, two round firm buttocks with a "
-        "smooth lifted swell, large full breasts held high and forward, a deep natural cleavage, "
-        "pale ivory skin, luminous porcelain skin, smooth soft skin texture"),
+        "slim yet voluptuous hourglass figure, 92-60-92, her legs are longer than her torso, slender firm thighs, her waist very slim, her hips are wide, her breasts are large sitting high and firm, pale skin, seated so her thighs press together and the line of her waist reads sharply above them,"),
     "crouch": (
-        "a tall slender build, slim yet voluptuous with an exaggerated hourglass curve, her legs "
-        "noticeably longer than her torso, balanced in a low crouch with her weight forward, "
-        "smooth long legs, slender toned thighs, a tiny defined waist flaring to broad hips, "
-        "a high tight peach shaped bottom, two round buttocks with a smooth lifted swell, "
-        "large full breasts held high and forward, a deep natural cleavage, warm pale skin, "
-        "luminous ivory skin, smooth soft skin texture, natural skin pores visible"),
+        "slim yet voluptuous hourglass figure, 92-60-92, her legs are longer than her torso, slender firm thighs, her waist very slim, her hips are wide, her breasts are large sitting high and firm, pale skin, balanced in a low crouch with her weight forward,"),
     "reach_up": (
-        "a tall slender build with elongated vertical proportions, slim yet voluptuous body, "
-        "arched back with her arms lifted overhead so her ribcage opens and her waist reads as a "
-        "deep curve, long smooth legs with slender firm thighs, a tiny sharply defined waistline "
-        "flaring out to the hip, wide hips, a high tight peach shaped bottom, two round buttocks "
-        "that curve out in a smooth peach-like swell, large full breasts held up in a lifted "
-        "rounded shape, a deep natural cleavage, pale porcelain skin, luminous ivory skin, "
-        "smooth soft skin texture"),
+        "slim yet voluptuous hourglass figure, 92-60-92, her legs are longer than her torso, slender firm thighs, her waist very slim, her hips are wide, her breasts are large sitting high and firm, pale skin, arched back with her arms lifted overhead so her ribcage opens,"),
     "stride": (
-        "a tall slender build with elongated vertical proportions, a slim yet voluptuous physique, "
-        "caught mid-stride with one leg forward and her shoulder rotated toward the camera, "
-        "smooth long legs, slender firm thighs, a very narrow waist that curves into full rounded "
-        "hips, a high tight peach shaped bottom, two full round buttocks with a smooth lifted "
-        "curve, large heavy breasts sitting high and firm, a deep shadowed cleavage, "
-        "warm honey skin, luminous tan skin, smooth soft skin texture"),
+        "slim yet voluptuous hourglass figure, 92-60-92, her legs are longer than her torso, slender firm thighs, her waist very slim, her hips are wide, her breasts are large sitting high and firm, pale skin, caught mid-stride with one leg forward and her shoulder rotated toward the camera,"),
 }
 
 

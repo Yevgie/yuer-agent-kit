@@ -33,7 +33,7 @@ bash ~/.hermes/skills/creative/feishu-tg-send-image/scripts/yuer_send_v2.sh \
 - ❌ EXIT 2 = caption 缺失
 - ❌ EXIT 127 = 路径错（不在 PATH）
 
-## 主人正解打脸原话（07-31）
+## 主人正解打脸原话
 
 「折腾一晚上了，早上起来了。我其实知道你穿黑色西装加黑色西装裙配厚黑丝。超级漂亮。开始吧，我要看」
 
