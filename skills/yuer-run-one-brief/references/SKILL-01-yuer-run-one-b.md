@@ -64,7 +64,7 @@ python3 -c "import json;d=json.load(open('/tmp/wa.json'));print({k:d.get(k) for 
 | 锚 | 为什么 | 写法 |
 |---|---|---|
 | **年龄 + 族裔主体锚** | `check_prompt_subject.py` 只认它 = 不写 = rc=1 = 主体判不出来 = 白跑一次算力 | `a 20 years old young Asian woman` 放在人物段开头 |
-| **身材 = 两条锚**（减法钦定 = 取代旧 5 锚）| 缺 = 比例塌 = 腿短臀松 = 主人当场纠 | ① `her legs are longer than her torso reaching up to her chest, smooth long legs with slender firm thighs` ② `Her waist is very slim and narrow, her hips are wide, her breasts are large (92cm) and sit high and firm on her chest` |
+| **身材 = 两条锚**（减法钦定 = 取代旧 5 锚）| 缺 = 比例塌 = 腿短臀松 = 主人当场纠 | **唯一真值 = `creative/yuer-image/references/铁律/02-身材特征档.md`（200 字整）= 本档 0 转抄 = 抄了就是第二个版本 = 必漂** |
 
 **唯一真值 = `creative/yuer-image/references/铁律/02-身材特征档.md`**（其余一律不写 = 堆料）。
 

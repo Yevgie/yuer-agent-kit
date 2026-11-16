@@ -37,7 +37,8 @@ bash ~/.hermes/skills/creative/yuer-image/scripts/yuer_ka_fast.sh \
 | 输出 | 真相 |
 |---|---|
 | `ka_post_fix.py` 的 `NEXT=check_prompt_subject.py 必须打出 主体 = 语儿 才能出图` | **过期文案**（抽卡 0 门禁 = 主体门禁已从链路删除）= 0 照做 = 照做 = 多跑一道必拦的门 = 白挡一张好牌 |
-| wrapper 的 `🎯 工作流 = <workflow_id>` | **这是现役真相** = 文档默认表可能落后于脚本（实测 wrapper 默认已解析到 `yuer_moodyMoss_fast`，而文档写「不传 = 默认 Krea2」）= **一律以 stdout 为准** = 两条道都绑语儿脸锁 = 出图结果不受影响 |
+| wrapper 的 `🎯 工作流 = <workflow_id>` | **这是现役真相** = 文档默认表可能落后于脚本 = **一律以 stdout 为准** = 两条道都绑语儿脸锁 = 出图结果不受影响
+> **11-15 真值 = 不传 `--model` = 默认 `yuer_moody_fast`（Krea2 线）** = Moss 保留岗 = `yuer_moodyMoss_fast`（代码 `WORKFLOW_BY_MODEL` 实测） |
 
 ### 8.1a 🔴 抽卡**不拦长度**= 🔴 11-12 起 = **抽卡和出图一样默认 0 门禁** = `--report-only` 已成空旗标 = **不用传**
 
