@@ -17,6 +17,7 @@
 判据 = 公开包 = 一个陌生 Agent clone 下来 = 每个文件都能直接读懂 + 0 悬空指针 + 0 敏感信息。
 """
 import argparse
+import json
 import os
 import re
 import shutil
@@ -51,13 +52,9 @@ PUB_TIE_LI = [
     "04-新工作流与兜底铁律.md",
     "README.md",
 ]
-PUB_SOUL_REFS = [
-    "发情机制v2.0-详细版.md",
-    "认知惯性层-豆包HumanlikeChat改造版v2.0.md",
-    "语儿个人生活-详细档案.md",
-    "语儿聊天风格-台湾腔傲娇女友.md",
-    "阿瑶-灵魂档案_v1.0.md",
-]
+# 🔴 soul/SOUL_references = 目录现扫（= 名单里不写具体档名 = 档名里带真名也不漏）
+#    机制 = 名单写死 = 名单本身带着真名 = 打进公开包 = 真名公开。
+PUB_SOUL_REFS = None   # None = 现扫目录
 PUB_WORKFLOWS = [
     "yuer_moody_fast.json",
     "yuer_moodyMoss_fast.json",
@@ -102,14 +99,22 @@ SANITIZE = [
     (r"\bxox[baprs]-[A-Za-z0-9-]{10,}", "xox_REDACTED"),
     (r"\bBearer\s+[A-Za-z0-9._-]{24,}", "Bearer ***REDACTED***"),
     (r"password_hash:\s*scrypt\$", "password_hash: ***REDACTED***"),
-    # 真实人名 → 通用称呼
-    (r"上官辰", "主人"),
-    (r"松儿姐姐", "女主人"),
-    (r"松儿", "女主人"),
-    (r"阿瑶", "闺蜜"),
-    (r"小灰", "猫"),
-    (r"老陈", "厨师"),
 ]
+
+# 🔴 真实人名替换表 = **本地独立文件**（= 公开包 0 装「谁叫什么」）
+#    机制 = 替换表里写着真名 = 把它打进公开包 = 等于把真名公开 = 脱敏白做。
+#    改法 = 表放 scripts/name_map.local.json（本地有 / 公开包没有 / .gitignore 掉）
+#    = 公开包的构建器只有通用规则（路径 / 密钥 / IP）= 别人 clone 下来照样能用。
+#    本地表 = {"原文": "通用称呼"} = 逐条替换 = 长串优先（自动按长度排序）。
+_NAME_MAP_FILE = os.path.join(HERE, "name_map.local.json")
+if os.path.isfile(_NAME_MAP_FILE):
+    try:
+        with open(_NAME_MAP_FILE, encoding="utf-8") as fh:
+            _nm = json.load(fh)
+        for k in sorted(_nm, key=len, reverse=True):
+            SANITIZE.append((re.escape(k), _nm[k]))
+    except Exception as _e:
+        print(f"⚠️ name_map.local.json 读不了（{_e}）= 跳过人名替换", file=sys.stderr)
 
 # ── 指针档识别 = 「本档已拆分」索引表 ──────────────────────────────────────
 SPLIT_RE = re.compile(r"\*\*本档已拆分\*\*")
@@ -335,19 +340,17 @@ def main():
         t = read(p) or ""
         t, _u = flatten(t, os.path.dirname(p), sr_root)
         t = fix_refs(t, sr_root, os.path.relpath(p, sr_root), None)
-        appendix += [f"## 附录档：{os.path.basename(p)}", "", sanitize(t).strip(), "", "---", ""]
+        appendix += [f"## 附录档：{sanitize(os.path.basename(p))}", "", sanitize(t).strip(), "", "---", ""]
     with open(os.path.join(out, "soul", "SOUL.md"), "w", encoding="utf-8") as fh:
         fh.write(soul_flat + "\n".join(appendix))
     report["files"] += 1
 
-    for name in PUB_SOUL_REFS:
-        p = os.path.join(sr_root, name)
-        if not os.path.isfile(p):
-            report["missing"].append("soul/SOUL_references/" + name)
-            continue
+    for p in soul_files:
+        name = os.path.basename(p)
         t = read(p) or ""
         t, _u = flatten(t, os.path.dirname(p), sr_root)
-        with open(os.path.join(out, "soul", "SOUL_references", name), "w", encoding="utf-8") as fh:
+        t = fix_refs(t, sr_root, os.path.relpath(p, sr_root), None)
+        with open(os.path.join(out, "soul", "SOUL_references", sanitize(name)), "w", encoding="utf-8") as fh:
             fh.write(sanitize(t))
         report["files"] += 1
 
